@@ -17,6 +17,11 @@ endif
 
 setup: tfenv-install-from-brew terraform-set-version terragrunt-install-from-source
 
+aws-vault-install-from-brew:
+	@echo "==> Installing aws-vault from brew..."
+	@if [[ ! "$(BREWLIST)" =~ "aws-vault" ]]; then brew install aws-vault; else echo "Already installed."; fi
+	@echo "==> Done."
+
 tfenv-install-from-brew:
 	@echo "==> Installing tfenv from brew..."
 	@if [[ ! "$(BREWLIST)" =~ "tfenv" ]]; then brew install --build-from-source tfenv; else echo "Already installed."; fi
