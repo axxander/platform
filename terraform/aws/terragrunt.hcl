@@ -23,6 +23,9 @@ locals {
   remote_state_dynamodb_name = "${local.organisation}-${local.aws_account_id}-terraform-remote-state-lock"
   remote_state_key           = "services/${local.service}/${path_relative_to_include()}/terraform.tfstate"
 
+  # IAM
+  aws_iam_assumed_role_name = "TerragruntRole"
+
   # Provider configuration
   aws_provider_version = "~> 4.0"
 }
@@ -35,6 +38,9 @@ generate "provider" {
   contents  = <<EOF
 provider "aws" {
   region              = "${local.aws_region}"
+  assume_role {
+    role_arn = "arn:aws:iam::${local.aws_account_id}:role/${local.aws_iam_assumed_role_name}"
+  }
   allowed_account_ids = ["${join("\", \"", local.config.aws_account_ids)}"]
 }
 EOF
