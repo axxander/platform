@@ -1,0 +1,9 @@
+version: 3
+projects:
+  - name: prod
+    dir: terraform/aws/alexgregorydotio-prod
+    autoplan:
+      when_modified: # relative to dir defined above
+        - "../../modules/aws/**/*.tf"
+        - "**/*.tf"
+        - "**/*.hcl"
