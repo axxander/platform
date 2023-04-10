@@ -3,7 +3,7 @@ projects:
   - name: prod
     dir: terraform/aws/alexgregorydotio-prod
     terraform_version: 1.4.4
-    workflow: terragrunt
+    # workflow: terragrunt
     autoplan:
       when_modified: # relative to dir defined above
         - "../../modules/aws/**/*.tf"
@@ -14,8 +14,14 @@ workflows:
   terragrunt:
     plan:
       steps:
+        # - env:
+        #   name: TERRAGRUNT_TFPATH
+        #   command: "echo terraform"
         - run: terragrunt plan -input=false
     
     apply:
       steps:
+        # - env:
+        #   name: TERRAGRUNT_TFPATH
+        #   command: "echo terraform"
         - run: terragrunt apply -input=false
