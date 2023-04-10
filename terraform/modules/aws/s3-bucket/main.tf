@@ -3,7 +3,7 @@ variable "organisation" {
 }
 
 resource "aws_s3_bucket" "this" {
-  bucket = "${var.organisation}-${uuid()}"
+  bucket = "${var.organisation}-${uuid()}-bucket"
 }
 
 output "bucket_name" {
