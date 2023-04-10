@@ -15,7 +15,7 @@ BREWLIST := $(shell brew list --formula)
 endif
 
 
-setup: tfenv-install-from-brew terraform-set-version terragrunt-install-from-source
+setup: aws-vault-install-from-brew tfenv-install-from-brew terraform-set-version terragrunt-install-from-source
 
 aws-vault-install-from-brew:
 	@echo "==> Installing aws-vault from brew..."
@@ -72,6 +72,7 @@ _terragrunt-install-from-source:
 help:
 	@echo 'Makefile targets:'
 	@echo '  setup                           - Installs tfenv, Terraform and Terragrunt.'
+	@echo '  aws-vault-install-from-brew     - Installs aws-vault for managing multiple AWS profiles.'
 	@echo '  tfenv-install-from-brew         - Installs tfenv for managing multiple Terraform versions.'
 	@echo '  terraform-set-version           - Installs Terraform version if not already installed and sets the Terraform version using tfenv.'
 	@echo '  terragrunt-install-from-source  - Installs Terragrunt from source.'
