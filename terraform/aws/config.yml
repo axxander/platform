@@ -1,0 +1,10 @@
+---
+organisation: alexgregorydotio
+service: infrastructure
+owner: platform # repo name
+
+aws_account_ids:
+  - "912142350009" # alexgregorydotio-prod
+
+aws_account_name_to_id:
+  alexgregorydotio-prod: "912142350009"
