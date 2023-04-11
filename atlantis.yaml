@@ -1,0 +1,21 @@
+version: 3
+projects:
+  - name: prod
+    dir: ./terraform/aws/alexgregorydotio-prod
+    terraform_version: 1.4.4
+    workflow: terragrunt
+    autoplan:
+      when_modified: # relative to dir defined above
+        - "../../modules/aws/**/*.tf"
+        - "**/*.tf"
+        - "**/*.hcl"
+
+workflows:
+  terragrunt:
+    plan:
+      steps:
+        - run: terragrunt run-all plan -input=false
+    
+    apply:
+      steps:
+        - run: terragrunt run-all apply -input=false
