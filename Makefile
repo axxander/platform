@@ -15,7 +15,7 @@ BREWLIST := $(shell brew list --formula)
 endif
 
 
-setup: tfenv-install-from-brew terraform-set-version terragrunt-install-from-source
+setup: tfenv-install-from-brew terraform-set-version terragrunt-install-from-source terraform-docs-install-from-brew
 
 aws-vault-install-from-brew:
 	@echo "==> Installing aws-vault from brew..."
@@ -41,11 +41,10 @@ terraform-set-version:
 	fi
 	@echo "==> Done."
 
-#TODO: fix when brew allows installation of specific version of Terragrunt
-# terragrunt-install-from-brew:
-# 	@echo "==> Checking for Terragrunt"
-# 	@if [[ ! "$(BREWLIST)" =~ "terragrunt" ]]; then brew install --build-from-source terragrunt@$(TERRAGRUNT_VERSION); else echo "Already installed"; fi
-# 	@echo "==> Done."
+terraform-docs-install-from-brew:
+	@echo "==> Installing terraform-docs from brew..."
+	@if [[ ! "$(BREWLIST)" =~ "terraform-docs" ]]; then brew install --build-from-source terraform-docs; else echo "Already installed."; fi
+	@echo "==> Done."
 
 terragrunt-install-from-source:
 	@echo "==> Installing Terragrunt from source..."

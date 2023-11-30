@@ -8,3 +8,6 @@ terraform.tfstate.backup
 
 # Terragrunt files
 .terragrunt-cache/
+
+# Atlantis
+atlantis.var

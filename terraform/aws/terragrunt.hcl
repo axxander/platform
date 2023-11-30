@@ -10,6 +10,9 @@ locals {
   # Automatically load environment-level variables
   environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
 
+  # Extract the variables we need for easy access
+  aws_account_name = local.account_vars.locals.aws_account_name
+
   # Static config
   config       = yamldecode(file("config.yml"))
   organisation = lookup(local.config, "organisation")
@@ -17,7 +20,7 @@ locals {
   owner        = lookup(local.config, "owner")
 
   # Remote state
-  aws_region                 = local.region_vars.locals.aws_region
+  aws_region                 = "eu-west-1"  # store all region's state in same region
   aws_account_id             = local.account_vars.locals.aws_account_id
   remote_state_bucket_name   = "${local.organisation}-${local.aws_account_id}-terraform-remote-state-bucket"
   remote_state_dynamodb_name = "${local.organisation}-${local.aws_account_id}-terraform-remote-state-lock"
@@ -25,6 +28,11 @@ locals {
 
   # IAM
   aws_iam_assumed_role_name = "TerragruntRole"
+
+  # Networking config
+  config_dir = "${get_parent_terragrunt_dir()}/_conf"
+  networking_config = yamldecode(file("${local.config_dir}/networks.yml"))
+  aws_networking_config = local.networking_config["networks"]["aws"]
 
   # Provider configuration
   aws_provider_version = "~> 4.0"
