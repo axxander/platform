@@ -1,0 +1,44 @@
+
+networks:
+  aws:
+    availability_zones:
+      - &aws-az1 eu-west-1a
+      - &aws-az2 eu-west-1b
+      - &aws-az3 eu-west-1c
+    alexgregorydotio-prod:
+      alexgregorydotio-prod-vpc:
+        cidr: 10.0.0.0/16
+        public-subnets:
+          subnet-az1:
+            cidr: &alexgregorydotio-prod-alexgregorydotio-prod-vpc-public-subnet-az1 10.0.2.0/24
+            az: *aws-az1
+            name: alexgregorydotio-prod-vpc-public-eu-west-1a
+          subnet-az2:
+            cidr: &alexgregorydotio-prod-alexgregorydotio-prod-vpc-public-subnet-az2 10.0.4.0/24
+            az: *aws-az2
+            name: alexgregorydotio-prod-vpc-public-eu-west-1b
+          subnet-az3:
+            cidr: &alexgregorydotio-prod-alexgregorydotio-prod-vpc-public-subnet-az3 10.0.6.0/24
+            az: *aws-az3
+            name: alexgregorydotio-prod-vpc-public-eu-west-1c
+        private-subnets:
+          subnet-az1:
+            cidr: &alexgregorydotio-prod-alexgregorydotio-prod-vpc-private-subnet-az1 10.0.1.0/24
+            az: *aws-az1
+            name: alexgregorydotio-prod-vpc-private-eu-west-1a
+          subnet-az2:
+            cidr: &alexgregorydotio-prod-alexgregorydotio-prod-vpc-private-subnet-az2 10.0.3.0/24
+            az: *aws-az2
+            name: alexgregorydotio-prod-vpc-private-eu-west-1b
+          subnet-az3:
+            cidr: &alexgregorydotio-prod-alexgregorydotio-prod-vpc-private-subnet-az3 10.0.5.0/24
+            az: *aws-az3
+            name: alexgregorydotio-prod-vpc-private-eu-west-1c
+        public-subnet-cidrs:
+          - *alexgregorydotio-prod-alexgregorydotio-prod-vpc-public-subnet-az1
+          - *alexgregorydotio-prod-alexgregorydotio-prod-vpc-public-subnet-az2
+          - *alexgregorydotio-prod-alexgregorydotio-prod-vpc-public-subnet-az3
+        private-subnet-cidrs:
+          - *alexgregorydotio-prod-alexgregorydotio-prod-vpc-private-subnet-az1
+          - *alexgregorydotio-prod-alexgregorydotio-prod-vpc-private-subnet-az2
+          - *alexgregorydotio-prod-alexgregorydotio-prod-vpc-private-subnet-az3

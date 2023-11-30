@@ -22,6 +22,6 @@ output "s3_bucket_prefix" {
   value = local.s3_bucket_prefix
 }
 
-output "vpc_prefix" {
-  value = local.vpc_prefix
+output "vpc_name" {
+  value = local.vpc_name
 }

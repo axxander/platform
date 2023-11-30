@@ -9,5 +9,5 @@ locals {
   secrets_manager_prefix = format("/%s/%s/", var.organisation, var.service)
   security_group_prefix  = format("%s-%s-", var.organisation, var.service)
   s3_bucket_prefix       = format("%s-%s-%s-", var.organisation, local.account_id, var.service)
-  vpc_prefix             = format("%s-%s-", var.organisation, local.account_id)
+  vpc_name               = format("%s-%s-%s-vpc", var.organisation, local.account_id, var.env)
 }

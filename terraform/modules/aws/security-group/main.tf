@@ -3,7 +3,7 @@ locals {
 }
 
 module "resource_naming" {
-  source = "../aws-naming"
+  source = "../resource-naming"
 
   # auto_vars
   organisation = var.organisation
